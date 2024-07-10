@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Students Performance Reports</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+    }
+    
+
+    .navbar {
+      background-color: rgba(28,192,158,255);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 1px;
+    }
+    .navbar img {
+      width: 50px;
+      height: 50px;
+      margin-left: 10px;
+    }
+    .navbar .welcome {
+    flex-grow: 1;
+    text-align: right;
+    margin-right: 10px; /* Adjusted margin */
+    font-size: 16px; /* Decreased font size */
+  }
+
+  .navbar #datetime {
+    font-size: 16px; /* Decreased font size */
+  }
+    .navbar .welcome span {
+      display: block;
+    }
+    .navbar .icons {
+      display: flex;
+      align-items: center;
+      margin-left: 200px; /* Increased margin to give more space */
+    }
+    .navbar .icons i {
+      font-size: 20px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: gray;
+    }
+    h2::after {
+      content: "";
+      display: block;
+      width: 2700px;
+      height: 2px;
+      background-color: lightgray;
+      margin-top: 10px;
+    }
+    .small {
+      zoom: 55%;
+    }
+    
+    .report-container {
+      border: px solid #777;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+    .semester-select {
+      margin-bottom: -30px;
+      margin-left: 20px;
+      
+    }
+    #semesterSelect {
+      width: 600px;
+      height: 50px;
+      font-size: 20px;
+      margin-left: 200px;
+    }
+    
+    table {
+      width: 50%;
+         border-collapse: collapse;
+      margin-top: 20px;
+      border: 1px solid #555;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #777;
+      border-right: 1px solid #777;
+    }
+    th:last-child, td:last-child {
+      border-right: none;
+    }
+    .sgpa-row {
+      font-weight: bold;
+      border-top: 2px solid #555;
+    }
+    .sgpa-cell {
+      padding: 12px;
+      text-align: right;
+    }
+    .sgpa-box {
+      padding: 1px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <img src="/images/cloud-logo.png" alt="Profile Picture" style="width: 200px; height: 50px;">
+    <div class="welcome">
+      <span>Welcome Osho Kothari</span>
+      <span id="datetime"></span>
+    </div>
+    <img src="/images/picture.jpeg" alt="Profile Picture">
+    <div class="icons">
+      <i class="fas fa-home"></i>
+      <i class="fas fa-th-large"></i>
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-globe"></i>
+      <i class="fas fa-user"></i>
+    </div>
+  </div>
+
+  <div class="small">
+    <h2>STUDENTS PERFORMANCE REPORTS</h2> 
+    
+
+  <!-- Table to display student performance report -->
+  <div class="report-container">
+    <tabl>
+      <tr>
+        <td>Roll No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BL.EN.U4CSE21141</td>&nbsp;&nbsp;&nbsp;&nbsp;
+        <td>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Osho Kothari</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <td>Academic Program & Branch</td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           B.Tech 2021 CSE</td><br><br><br>
+      </tr>
+      <tr>
+        <td colspan="3">Current CGPA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0</td><br><br><br>
+      </tr>
+      <tr>
+        <td colspan="3">NOTE: CGPA value will be shown ONLY AFTER all the courses that the student has registered in the term has been Published from Registrar's office</td>
+      </tr>
+    </table>
+  </div>
+
+    <!-- Dropdown menu for selecting semester -->
+    <div class="semester-select">
+      <label for="semesterSelect">Semester:</label>
+      <select id="semesterSelect" onchange="showSemesterReport()">
+        <option value="Select">Select</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+
+    <!-- Container for the report -->
+    <div class="report-container">
+      <table id="semesterTable">
+        <thead>
+          <tr>
+            <th>Sem</th>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Academic Term Period</th>
+            <th>Type</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Semester data will be populated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function showSemesterReport() {
+  const selectedSemester = document.getElementById('semesterSelect').value;
+  const tableBody = document.getElementById('semesterTable').getElementsByTagName('tbody')[0];
+  tableBody.innerHTML = '';
+
+  // Provided data for the 6th semester
+  const data = [
+    { sem: '6', code: '19CSE311', name: 'Computer Security', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
+    { sem: '6', code: '19CSE312', name: 'Distributed Systems', term: '2023-2024Even Semester', type: 'Regular', grade: 'B' },
+    { sem: '6', code: '19CSE313', name: 'Principles of Programming Languages', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
+    { sem: '6', code: '19CSE314', name: 'Software Engineering', term: '2023-2024Even Semester', type: 'Regular', grade: 'A+' },
+    { sem: '6', code: '19CSE335', name: 'Ethical Hacking', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
+    { sem: '6', code: '19CSE445', name: 'Cloud Computing', term: '2023-2024Even Semester', type: 'Regular', grade: 'A' },
+    { sem: '6', code: '19SSK311', name: 'Soft Skills III', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
+  ];
+
+  // Populate the table with the provided data
+  data.forEach(course => {
+    if (course.sem === selectedSemester) {
+      const newRow = tableBody.insertRow();
+      newRow.innerHTML = `
+        <td>${course.sem}</td>
+        <td>${course.code}</td>
+        <td>${course.name}</td>
+        <td>${course.term}</td>
+        <td>${course.type}</td>
+        <td>${course.grade}</td>
+      `;
+    }
+  });
+
+  // Calculate SGPA only for the 6th semester
+  if (selectedSemester === '6') {
+    const sgpa = 8.16;
+
+    // Create the SGPA row
+    const sgpaRow = tableBody.insertRow();
+    sgpaRow.className = 'sgpa-row';
+
+    // Create the SGPA cell in the row
+    const sgpaCell = sgpaRow.insertCell();
+    sgpaCell.className = 'sgpa-cell';
+    sgpaCell.colSpan = 6;
+    sgpaCell.innerHTML = `<div class="sgpa-box">SGPA: ${sgpa}</div>`;
+  }
+}
+
+
+      // Initial load of the table
+      showSemesterReport();
+
+      // Function to update the date and time
+      function updateDateTime() {
+        const now = new Date();
+        const formattedDate = now.toLocaleString('en-US', {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          hour12: true
+        });
+        document.getElementById('datetime').innerText = formattedDate;
+      }
+
+      // Update the date and time every second
+      setInterval(updateDateTime, 1000);
+    </script>
+  </div>
+</body>
+</html>
