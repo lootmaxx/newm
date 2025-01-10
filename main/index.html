@@ -9,7 +9,6 @@
       font-family: Arial, sans-serif;
       font-size: 20px;
     }
-    
 
     .navbar {
       background-color: rgba(28,192,158,255);
@@ -24,15 +23,15 @@
       margin-left: 10px;
     }
     .navbar .welcome {
-    flex-grow: 1;
-    text-align: right;
-    margin-right: 10px; /* Adjusted margin */
-    font-size: 16px; /* Decreased font size */
-  }
+      flex-grow: 1;
+      text-align: right;
+      margin-right: 10px; /* Adjusted margin */
+      font-size: 16px; /* Decreased font size */
+    }
 
-  .navbar #datetime {
-    font-size: 16px; /* Decreased font size */
-  }
+    .navbar #datetime {
+      font-size: 16px; /* Decreased font size */
+    }
     .navbar .welcome span {
       display: block;
     }
@@ -62,7 +61,7 @@
     .small {
       zoom: 55%;
     }
-    
+
     .report-container {
       border: px solid #777;
       border-radius: 5px;
@@ -72,7 +71,6 @@
     .semester-select {
       margin-bottom: -30px;
       margin-left: 20px;
-      
     }
     #semesterSelect {
       width: 600px;
@@ -80,10 +78,10 @@
       font-size: 20px;
       margin-left: 200px;
     }
-    
+
     table {
       width: 50%;
-         border-collapse: collapse;
+      border-collapse: collapse;
       margin-top: 20px;
       border: 1px solid #555;
     }
@@ -129,7 +127,6 @@
 
   <div class="small">
     <h2>STUDENTS PERFORMANCE REPORTS</h2> 
-    
 
   <!-- Table to display student performance report -->
   <div class="report-container">
@@ -155,6 +152,7 @@
       <select id="semesterSelect" onchange="showSemesterReport()">
         <option value="Select">Select</option>
         <option value="6">6</option>
+        <option value="7">7</option>
       </select>
     </div>
 
@@ -183,22 +181,29 @@
   const tableBody = document.getElementById('semesterTable').getElementsByTagName('tbody')[0];
   tableBody.innerHTML = '';
 
-  // Provided data for the 6th semester
-  const data = [
-    { sem: '6', code: '19EEE111', name: 'Electrical and Electronics Engineering ', term: '2023-2024Even Semester', type: 'Regular', grade: 'F' },
-    { sem: '6', code: '19MAT202', name: 'Optimization Techniques', term: '2023-2024Even Semester', type: 'Regular', grade: 'P' },
-    { sem: '6', code: '19CSE311', name: 'Computer Security', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
-    { sem: '6', code: '19CSE312', name: 'Distributed Systems', term: '2023-2024Even Semester', type: 'Regular', grade: 'B' },
-    { sem: '6', code: '19CSE313', name: 'Principles of Programming Languages', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
-    { sem: '6', code: '19CSE314', name: 'Software Engineering', term: '2023-2024Even Semester', type: 'Regular', grade: 'A+' },
-    { sem: '6', code: '19CSE335', name: 'Ethical Hacking', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
-    { sem: '6', code: '19CSE445', name: 'Cloud Computing', term: '2023-2024Even Semester', type: 'Regular', grade: 'A' },
-    { sem: '6', code: '19SSK311', name: 'Soft Skills III', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
-  ];
+  const semesterData = {
+    '6': [
+      { sem: '6', code: '19CSE311', name: 'Computer Security', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
+      { sem: '6', code: '19CSE312', name: 'Distributed Systems', term: '2023-2024Even Semester', type: 'Regular', grade: 'B' },
+      { sem: '6', code: '19CSE313', name: 'Principles of Programming Languages', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
+      { sem: '6', code: '19CSE314', name: 'Software Engineering', term: '2023-2024Even Semester', type: 'Regular', grade: 'A+' },
+      { sem: '6', code: '19CSE335', name: 'Ethical Hacking', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
+      { sem: '6', code: '19CSE445', name: 'Cloud Computing', term: '2023-2024Even Semester', type: 'Regular', grade: 'A' },
+      { sem: '6', code: '19SSK311', name: 'Soft Skills III', term: '2023-2024Even Semester', type: 'Regular', grade: 'B+' },
+    ],
+    '7': [
+      { sem: '7', code: '19CSE353', name: 'Mining of Massive Datasets', term: '2024-2025Odd Semester', type: 'Regular', grade: 'B' },
+      { sem: '7', code: '19CSE401', name: 'Compiler Design', term: '2024-2025Odd Semester', type: 'Regular', grade: 'B+' },
+      { sem: '7', code: '19CSE435', name: 'Computer Vision', term: '2024-2025Odd Semester', type: 'Regular', grade: 'A' },
+      { sem: '7', code: '19CSE444', name: 'Real Time Systems', term: '2024-2025Odd Semester', type: 'Regular', grade: 'B+' },
+      { sem: '7', code: '19CSE495', name: 'Project - Phase - 1', term: '2024-2025Odd Semester', type: 'Regular', grade: 'B+' },
+      { sem: '7', code: '19LAW300', name: 'Indian Constitution', term: '2024-2025Odd Semester', type: 'Regular', grade: 'P' },
+      { sem: '7', code: '19MNG331', name: 'Financial Management', term: '2024-2025Odd Semester', type: 'Regular', grade: 'C' },
+    ]
+  };
 
-  // Populate the table with the provided data
-  data.forEach(course => {
-    if (course.sem === selectedSemester) {
+  if (semesterData[selectedSemester]) {
+    semesterData[selectedSemester].forEach(course => {
       const newRow = tableBody.insertRow();
       newRow.innerHTML = `
         <td>${course.sem}</td>
@@ -208,25 +213,22 @@
         <td>${course.type}</td>
         <td>${course.grade}</td>
       `;
+    });
+
+    // Calculate SGPA for the selected semester
+    const sgpa = selectedSemester === '6' ? 8.16 : selectedSemester === '7' ? 7.64 : null;
+
+    if (sgpa !== null) {
+      const sgpaRow = tableBody.insertRow();
+      sgpaRow.className = 'sgpa-row';
+
+      const sgpaCell = sgpaRow.insertCell();
+      sgpaCell.className = 'sgpa-cell';
+      sgpaCell.colSpan = 6;
+      sgpaCell.innerHTML = `<div class="sgpa-box">SGPA: ${sgpa}</div>`;
     }
-  });
-
-  // Calculate SGPA only for the 6th semester
-  if (selectedSemester === '6') {
-    const sgpa = 8.23;
-
-    // Create the SGPA row
-    const sgpaRow = tableBody.insertRow();
-    sgpaRow.className = 'sgpa-row';
-
-    // Create the SGPA cell in the row
-    const sgpaCell = sgpaRow.insertCell();
-    sgpaCell.className = 'sgpa-cell';
-    sgpaCell.colSpan = 6;
-    sgpaCell.innerHTML = `<div class="sgpa-box">SGPA: ${sgpa}</div>`;
   }
 }
-
 
       // Initial load of the table
       showSemesterReport();
