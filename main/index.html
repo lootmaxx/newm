@@ -138,7 +138,7 @@
            B.Tech 2021 CSE</td><br><br><br>
       </tr>
       <tr>
-        <td colspan="3">Current CGPA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7.34</td><br><br><br>
+        <td colspan="3">Current CGPA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.0</td><br><br><br>
       </tr>
       <tr>
         <td colspan="3">NOTE: CGPA value will be shown ONLY AFTER all the courses that the student has registered in the term has been Published from Registrar's office</td>
@@ -153,6 +153,8 @@
         <option value="Select">Select</option>
         <option value="6">6</option>
         <option value="7">7</option>
+        <option value="8">8</option>
+
       </select>
     </div>
 
@@ -199,8 +201,11 @@
       { sem: '7', code: '19CSE495', name: 'Project - Phase - 1', term: '2024-2025Odd Semester', type: 'Regular', grade: 'B+' },
       { sem: '7', code: '19LAW300', name: 'Indian Constitution', term: '2024-2025Odd Semester', type: 'Regular', grade: 'P' },
       { sem: '7', code: '19MNG331', name: 'Financial Management', term: '2024-2025Odd Semester', type: 'Regular', grade: 'C' },
-      { sem: '7', code: '19EEE111', name: 'Electrical and Electronics Engineering', term: '2024-2025Odd Semester', type: 'Reexam', grade: 'C' },
-    ]
+    ],
+    '8': [
+      { sem: '8', code: '19CSE496', name: 'Project - Phase - 2', term: '2024-2025Even Semester', type: 'Regular', grade: 'B+' } 
+    ],
+
   };
 
   if (semesterData[selectedSemester]) {
@@ -217,7 +222,7 @@
     });
 
     // Calculate SGPA for the selected semester
-    const sgpa = selectedSemester === '6' ? 8.16 : selectedSemester === '7' ? 7.92 : null;
+    const sgpa = selectedSemester === '6' ? 8.16 : selectedSemester === '7' ? 7.64 : selectedSemester === '8' ? 8.00 : null;
 
     if (sgpa !== null) {
       const sgpaRow = tableBody.insertRow();
